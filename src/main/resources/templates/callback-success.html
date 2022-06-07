@@ -25,43 +25,45 @@
             <br>
             <br>
         </div>
-        <div class="w3-display-middle" style="white-space:nowrap;">
-            <div style="padding-top: 60px">
-                <div >
-                    <div >
-                        <div>
-                            <marquee behavior="scroll" direction="left" bgcolor="#ffcc00">
-                                <p  th:text="${#strings.abbreviate(currentPlaying.item.album.name,100)}">Kelis</p>
-                            </marquee>
-                        </div>
-                        <div>
-                            <marquee behavior="scroll" direction="left" bgcolor="#ffcc00">
-                                <p th:text="${#strings.abbreviate(currentPlaying.item.name+' ('+currentPlaying.item.artists[0].name+')',100)}">Trick me (DJ Flam remix)</p>
-                            </marquee>
-                        </div>
-                        <div id="mobile-box">
-                            <audio id="music" preload="true">
-                                <source th:src="@{''+${currentPlaying.item.preview_url}+''}">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-                <div >
-                    <div >
-                        <div >
-                            <div style="padding-bottom: 50px">
-                                <img id="image"  th:src="@{''+${currentPlaying.item.album.images[0].url}+''}" src="https://mdbootstrap.com//img/Photos/Others/blossom.jpg" alt="">
-                            </div>
-                            <div class="w3-display-bottommiddle" style="white-space:nowrap;">
-                                <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-                                    <span class="w3-hide-small"><a href="/logout" style="margin:auto" type="button" >Log Out</a></span>
-                                    <a type="button" href="/redirect">Refresh</a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div th:if="${display}">
+         <div class="w3-display-middle" style="white-space:nowrap;">
+             <div style="padding-top: 60px">
+                 <div >
+                     <div >
+                         <div>
+                             <marquee behavior="scroll" direction="left" bgcolor="#ffcc00">
+                                 <p  th:text="${#strings.abbreviate(currentPlaying.item.album.name,100)}">Kelis</p>
+                             </marquee>
+                         </div>
+                         <div>
+                             <marquee behavior="scroll" direction="left" bgcolor="#ffcc00">
+                                 <p th:text="${#strings.abbreviate(currentPlaying.item.name+' ('+currentPlaying.item.artists[0].name+')',100)}">Trick me (DJ Flam remix)</p>
+                             </marquee>
+                         </div>
+                         <div id="mobile-box">
+                             <audio id="music" preload="true">
+                                 <source th:src="@{''+${currentPlaying.item.preview_url}+''}">
+                             </audio>
+                         </div>
+                     </div>
+                 </div>
+                 <div >
+                     <div >
+                         <div >
+                             <div style="padding-bottom: 50px">
+                                 <img id="image"  th:src="@{''+${currentPlaying.item.album.images[0].url}+''}" src="https://mdbootstrap.com//img/Photos/Others/blossom.jpg" alt="">
+                             </div>
+                             <div class="w3-display-bottommiddle" style="white-space:nowrap;">
+                                 <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
+                                     <span class="w3-hide-small"><a href="/logout" style="margin:auto" type="button" >Log Out</a></span>
+                                     <a type="button" href="/redirect">Refresh</a>
+                                 </span>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
         </div>
 </body>
 
