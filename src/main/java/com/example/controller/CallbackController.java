@@ -32,10 +32,8 @@ public class CallbackController {
 
 		if (error != null) {
 			model.addAttribute("url", spotifyUrlService.getAuthorizationURL());
-			System.out.println(spotifyUrlService.getAuthorizationURL());
 			return Template.CALLBACK_FAILURE;
 		}
-		System.out.println(code);
 		session.setAttribute("code", code);
 		String token = accessToken.getToken(code);
 

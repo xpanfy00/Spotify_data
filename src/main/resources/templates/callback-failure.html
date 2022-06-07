@@ -6,24 +6,43 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Spotify Data</title>
     <link rel="stylesheet" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
 <body>
     <nav >
-        <div >
-            <a href="#">Spotify Data</a>
+        <div class="w3-display-topmiddle" style="white-space:nowrap; padding-top: 20px">
+            <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">MY <span class="w3-hide-small">Spotify</span> Data</span>
         </div>
     </nav>
-    <div >
-        <div >
-            <h1 >Not Authorized</h1>
-            <h1 >Spotify Data Could Not Generate Page Without Auhthorization From A Valid Spotify Account</h1>
-        </div>
-    </div>
-    <div>
-        <a type="button" th:href="@{${url}}">Try Again</a>>
+
+    <div class="w3-display-middle" style="white-space:nowrap;">
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Not <span class="w3-hide-small">Authorized</span></span>
+        <br>
+        <br>
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Spotify Data
+            <span class="w3-hide-small"></span></span>
+        <br>
+        <br>
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Could Not Generate Page Without
+            <span class="w3-hide-small"></span></span>
+        <br>
+        <br>
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
+            <span class="w3-hide-small">Auhthorization From</span></span>
+        <br>
+        <br>
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
+            <span class="w3-hide-small"></span>A Valid Spotify Account</span>
+        <br>
+        <br>
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Try
+            <span class="w3-hide-small"></span><a type="button" th:href="@{${url}}">Again</a></span>
+        <br><br>
     </div>
 </body>
-
 </html>
