@@ -3,10 +3,7 @@ package com.example.controller;
 import com.example.constant.ApiPath;
 import com.example.constant.Template;
 import com.example.exception.NoTrackPlayingException;
-import com.example.service.AccessTokenService;
-import com.example.service.CurrentPlayingService;
-import com.example.service.ProfileDetailService;
-import com.example.service.SpotifyUrlService;
+import com.example.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -15,6 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 
 @Controller
 @AllArgsConstructor
@@ -24,6 +25,10 @@ public class CallbackController {
 	private final AccessTokenService accessToken;
 	private final ProfileDetailService userDetails;
 	private final CurrentPlayingService currentPlaying;
+
+	private final ProfileDevicesService devices;
+
+
 
 	@GetMapping(value = ApiPath.CALLBACK, produces = MediaType.TEXT_HTML_VALUE)
 	public String handleCallback(@RequestParam(value = "code", required = false) final String code,
@@ -36,10 +41,9 @@ public class CallbackController {
 		}
 		session.setAttribute("code", code);
 		String token = accessToken.getToken(code);
-
 		session.setAttribute("accessToken", token);
-		model.addAttribute("accessToken", token);
 		model.addAttribute("userName", userDetails.getUsername(token));
+		model.addAttribute("devices", devices.getDevices(token));
 
 		try {
 			model.addAttribute("currentPlaying", currentPlaying.getCurrentPlaying(token));

@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.constant.UrlPath;
 import com.example.dto.AccessTokenDto;
 import com.example.properties.SpotifyAppConfigurationProperties;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,6 @@ public class AccessTokenService {
     private final SpotifyUrlService spotifyUrlService;
     private final RestTemplate restTemplate;
     private final SpotifyAppConfigurationProperties spotifyAppConfigurationProperties;
-    private static final String URL = "https://accounts.spotify.com/api/token";
 
     public String getToken(String code){
         final var properties = spotifyAppConfigurationProperties.getApp();
@@ -37,7 +37,7 @@ public class AccessTokenService {
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
 
-        ResponseEntity<AccessTokenDto> response = restTemplate.postForEntity(URL, request, AccessTokenDto.class);
+        ResponseEntity<AccessTokenDto> response = restTemplate.postForEntity(UrlPath.TOKEN, request, AccessTokenDto.class);
         return response.getBody().getAccess_token();
     }
 }

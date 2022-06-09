@@ -12,5 +12,6 @@ public class SpotifyAppConfigurationProperties {
     public class App {
         private String clientId;
         private String redirectUrl;
+        private String scope;
     }
 }

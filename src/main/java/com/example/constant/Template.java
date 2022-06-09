@@ -5,6 +5,6 @@ public class Template {
     public static final String CALLBACK_FAILURE = "callback-failure";
     public static final String INDEX = "index";
     public static final String ERROR = "error";
-    public static final String NO_DATA = "no-data";
 
+    public static final String PLAYLIST = "playlist";
 }

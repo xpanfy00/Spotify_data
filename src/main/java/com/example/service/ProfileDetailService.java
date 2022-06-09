@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.constant.UrlPath;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,15 +16,15 @@ import java.util.LinkedHashMap;
 public class ProfileDetailService {
 
 	private final RestTemplate restTemplate;
-	private static final String URL = "https://api.spotify.com/v1/me";
+
 
 	public LinkedHashMap getUser(String token) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Authorization", "Bearer " + token);
 
-		HttpEntity<String> entity = new HttpEntity<>("paramters", headers);
+		HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
 
-		ResponseEntity<Object> response = restTemplate.exchange(URL, HttpMethod.GET, entity, Object.class);
+		ResponseEntity<Object> response = restTemplate.exchange(UrlPath.ME, HttpMethod.GET, entity, Object.class);
 		LinkedHashMap result = (LinkedHashMap) response.getBody();
 		return result;
 	}

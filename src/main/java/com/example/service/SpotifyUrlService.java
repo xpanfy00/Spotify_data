@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
+import java.util.UUID;
+
+import java.util.Random;
 
 @Data
 @Service
@@ -21,10 +24,13 @@ public class SpotifyUrlService {
         final var properties = spotifyAppConfigurationProperties.getApp();
         final var codeVerifier = CodeVerifierUtility.generate();
         setCodeVerifier(codeVerifier);
+        final var state = UUID.randomUUID().toString();
+
         return "https://accounts.spotify.com/en/authorize?client_id=" + properties.getClientId()
                 + "&response_type=code&redirect_uri=" + properties.getRedirectUrl()
                 + "&code_challenge_method=S256&code_challenge=" + CodeChallengeUtility.generate(codeVerifier)
-                + "&scope=ugc-image-upload,user-read-playback-state,user-modify-playback-state,user-read-currently-playing,streaming,app-remote-control,user-read-email,user-read-private"
-                + ",playlist-read-collaborative,playlist-modify-public,playlist-read-private,playlist-modify-private,user-library-modify,user-library-read,user-top-read,user-read-playback-position,user-read-recently-played,user-follow-read,user-follow-modify";
+                + properties.getScope()
+                + "&state=" + state;
     }
+
 }

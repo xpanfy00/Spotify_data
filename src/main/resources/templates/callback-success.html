@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -11,73 +11,48 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 
-<body >
-        <div class="w3-display-topmiddle" style="white-space:nowrap;">
-            <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">MY <span class="w3-hide-small">Spotify</span> Data</span>
-            <br>
-            <br>
-            <span class="w3-centered w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-                <span  th:text="'Hello '+${userName}" class="w3-hide-small">Spotify</span>
-            </span>
-            <br>
-            <br>
-        </div>
-        <div th:if="${display == 0}">
-            <div class="w3-display-middle" style="white-space:nowrap;">
-                 <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-                                     <span class="w3-hide-small" th:text="${userName}"></span> - is not listening to anything right now
-                                 </span>
-                <br>
-                <br>
-                <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-                                     <span class="w3-hide-small">try to</span> <a type="button" href="/redirect">Refresh</a>
-                                 </span>
+<body>
+<div>
+    <div class="w3-display-topmiddle" style="white-space:nowrap; padding-top: 65px">
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">MY <span class="w3-hide-small">Spotify</span> Data</span>
+        <br>
+        <br>
+        <span class="w3-centered w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
+                    <span  th:text="'Hello '+${userName}" class="w3-hide-small">Spotify</span>
+                </span>
+    </div>
+    <div th:if="${display == 0}" class="w3-display-middle" style="white-space:nowrap;">
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"><span class="w3-hide-small" th:text="${userName}"></span> - is not listening to anything right now</span>
+        <br>
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"><span class="w3-hide-small">try to</span> <a type="button" href="/redirect">Refresh</a></span>
+    </div>
+    <div th:if="${display == 1}" class="w3-display-middle" style="white-space:nowrap; padding-top: 50px">
+        <div style="white-space:nowrap; padding-top: 65px">
+            <div style="white-space:nowrap; padding-top: 50px">
+                <img style="max-width: 250px; max-height: 250px" th:src="@{''+${currentPlaying.item.album.images[0].url}+''}">
             </div>
+            <div style="white-space:nowrap;">
+                <marquee behavior="scroll" direction="left" bgcolor="#ffcc00">
+                    <p  th:text="${#strings.abbreviate(currentPlaying.item.album.name,100)}">Kelis</p>
+                </marquee>
+                <br>
+                <marquee behavior="scroll" direction="left" bgcolor="#ffcc00">
+                    <p th:text="${#strings.abbreviate(currentPlaying.item.name+' ('+currentPlaying.item.artists[0].name+')',100)}">Trick me (DJ Flam remix)</p>
+                </marquee>
+            </div>
+        </div>
+    </div>
+    <div class="w3-display-bottommiddle" style="white-space:nowrap; padding-bottom: 15px; padding-top: 50px">
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
 
-        </div>
-        <div th:if="${display == 1}">
-         <div class="w3-display-middle" style="white-space:nowrap;">
-             <div style="padding-top: 60px">
-                 <div >
-                     <div >
-                         <div>
-                             <marquee behavior="scroll" direction="left" bgcolor="#ffcc00">
-                                 <p  th:text="${#strings.abbreviate(currentPlaying.item.album.name,100)}">Kelis</p>
-                             </marquee>
-                         </div>
-                         <div>
-                             <marquee behavior="scroll" direction="left" bgcolor="#ffcc00">
-                                 <p th:text="${#strings.abbreviate(currentPlaying.item.name+' ('+currentPlaying.item.artists[0].name+')',100)}">Trick me (DJ Flam remix)</p>
-                             </marquee>
-                         </div>
-                         <div id="mobile-box">
-                             <audio id="music" preload="true">
-                                 <source th:src="@{''+${currentPlaying.item.preview_url}+''}">
-                             </audio>
-                         </div>
-                     </div>
-                 </div>
-                 <div >
-                     <div >
-                         <div >
-                             <div style="padding-bottom: 50px">
-                                 <img id="image"  th:src="@{''+${currentPlaying.item.album.images[0].url}+''}" src="https://mdbootstrap.com//img/Photos/Others/blossom.jpg" alt="">
-                             </div>
-                             <div class="w3-display-bottommiddle" style="white-space:nowrap;">
-                                 <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-                                     <span class="w3-hide-small"><a href="/logout" style="margin:auto" type="button" >Log Out</a></span>
-                                     <a type="button" href="/redirect">Refresh</a>
-                                 </span>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-        </div>
+            <span class="w3-hide-small">
+                <a href="/logout" style="margin:auto" type="button" >Log Out</a>
+            </span>
+            <a type="button" href="/redirect">Refresh</a> <a href="/playlist" style="margin:auto" type="button" >playlist</a>
+        </span>
+    </div>
+</div>
 </body>
-
 </html>

@@ -22,7 +22,6 @@ public class RedirectController {
     @GetMapping(value = ApiPath.REDIRECT, produces = MediaType.TEXT_HTML_VALUE)
     public String redirectToCallbackSuccess(final HttpSession session, final Model model) {
         String token = (String) session.getAttribute("accessToken");
-        model.addAttribute("accessToken", token);
         model.addAttribute("userName", userDetails.getUsername(token));
 
         try {

@@ -6,4 +6,6 @@ public class ApiPath {
     public static final String ERROR = "/error";
     public static final String REDIRECT = "/redirect";
 
+    public static final String PLAYLIST = "/playlist";
+
 }
