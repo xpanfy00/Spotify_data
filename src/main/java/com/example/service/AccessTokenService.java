@@ -28,6 +28,10 @@ public class AccessTokenService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
+        System.out.println(headers.entrySet());
+        System.out.println(headers.getContentType());
+        System.out.println(MediaType.APPLICATION_FORM_URLENCODED);
+
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("client_id", properties.getClientId());
         map.add("grant_type", "authorization_code");
@@ -35,9 +39,13 @@ public class AccessTokenService {
         map.add("redirect_uri", properties.getRedirectUrl());
         map.add("code_verifier", spotifyUrlService.getCodeVerifier());
 
+
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
 
+
         ResponseEntity<AccessTokenDto> response = restTemplate.postForEntity(UrlPath.TOKEN, request, AccessTokenDto.class);
+
+
         return response.getBody().getAccess_token();
     }
 }

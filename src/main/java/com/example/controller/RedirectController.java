@@ -5,6 +5,7 @@ import com.example.constant.Template;
 import com.example.exception.NoTrackPlayingException;
 import com.example.service.CurrentPlayingService;
 import com.example.service.ProfileDetailService;
+import com.example.service.ProfileDevicesService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -18,12 +19,13 @@ import javax.servlet.http.HttpSession;
 public class RedirectController {
     private final ProfileDetailService userDetails;
     private final CurrentPlayingService currentPlaying;
+    private final ProfileDevicesService devices;
 
     @GetMapping(value = ApiPath.REDIRECT, produces = MediaType.TEXT_HTML_VALUE)
     public String redirectToCallbackSuccess(final HttpSession session, final Model model) {
         String token = (String) session.getAttribute("accessToken");
         model.addAttribute("userName", userDetails.getUsername(token));
-
+        model.addAttribute("devices", devices.getDevices(token));
         try {
             model.addAttribute("currentPlaying", currentPlaying.getCurrentPlaying(token));
             model.addAttribute("display", 1);

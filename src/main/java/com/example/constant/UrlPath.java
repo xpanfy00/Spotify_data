@@ -3,7 +3,6 @@ package com.example.constant;
 public class UrlPath {
 
     public static final String ME = "https://api.spotify.com/v1/me";
-    public static final String AUTHORIZE = "https://accounts.spotify.com/authorize";
     public static final String TOKEN = "https://accounts.spotify.com/api/token";
     public static final String PLAYLISTS = "https://api.spotify.com/v1/me/playlists";
     public static final String DEVICES = "https://api.spotify.com/v1/me/player/devices";

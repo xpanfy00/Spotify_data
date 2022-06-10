@@ -24,6 +24,7 @@ public class PlaylistService {
 
         ResponseEntity<Object> response = restTemplate.exchange(UrlPath.PLAYLISTS, HttpMethod.GET, entity, Object.class);
         LinkedHashMap result = (LinkedHashMap) response.getBody();
+
         return result;
     }
 }

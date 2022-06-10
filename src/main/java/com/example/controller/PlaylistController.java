@@ -30,8 +30,6 @@ public class PlaylistController {
     @GetMapping(value = ApiPath.PLAYLIST, produces = MediaType.TEXT_HTML_VALUE)
     public String handleCallback(final HttpSession session, final Model model) {
         model.addAttribute("playlist", playlist.getPlaylist((String) session.getAttribute("accessToken")));
-        var item = playlist.getPlaylist((String) session.getAttribute("accessToken"));
-        System.out.println(item.keySet());
         return Template.PLAYLIST;
     }
 }
