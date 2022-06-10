@@ -17,10 +17,6 @@ import javax.servlet.http.HttpSession;
 @AllArgsConstructor
 public class PlaylistController {
 
-    private final SpotifyUrlService spotifyUrlService;
-    private final AccessTokenService accessToken;
-    private final ProfileDetailService userDetails;
-
     private final PlaylistService playlist;
 
 
